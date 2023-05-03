@@ -34,4 +34,11 @@ public class Reservation {
 
     @Column(name = "expiration_time")
     private LocalDateTime expirationTime;
+
+    public Reservation(Screening screening, String firstName, String secondName, LocalDateTime expirationTime) {
+        this.screening = screening;
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.expirationTime = expirationTime;
+    }
 }

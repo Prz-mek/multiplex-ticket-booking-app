@@ -27,4 +27,15 @@ public class Ticket {
     @ManyToOne
     @JoinColumn(name = "reservation_id")
     private Reservation reservation;
+
+    @ManyToOne
+    @JoinColumn(name = "screening_id")
+    private Screening screening;
+
+    public Ticket(TicketType type, Seat seat, Reservation reservation, Screening screening) {
+        this.type = type;
+        this.seat = seat;
+        this.reservation = reservation;
+        this.screening = screening;
+    }
 }

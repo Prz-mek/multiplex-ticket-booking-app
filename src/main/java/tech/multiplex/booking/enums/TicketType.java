@@ -1,5 +1,7 @@
 package tech.multiplex.booking.enums;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import java.math.BigDecimal;
 
 public enum TicketType {
@@ -23,4 +25,16 @@ public enum TicketType {
         return price;
     }
 
+    @JsonCreator
+    public static TicketType fromText(String text) {
+        if (text.equals(ADULT.getName())) {
+            return ADULT;
+        }
+
+        if (text.equals(STUDENT.getName())) {
+            return STUDENT;
+        }
+
+        return CHILD;
+    }
 }
