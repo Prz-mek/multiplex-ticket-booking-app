@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.math.BigDecimal;
 
 public enum TicketType {
-    ADULT("Adult", new BigDecimal(25.0)),
-    STUDENT("Student", new BigDecimal(18.0)),
-    CHILD("Child", new BigDecimal(12.5));
+    ADULT("ADULT", new BigDecimal(25.0)),
+    STUDENT("STUDENT", new BigDecimal(18.0)),
+    CHILD("CHILD", new BigDecimal(12.5));
 
     private final String name;
     private final BigDecimal price;
@@ -27,11 +27,11 @@ public enum TicketType {
 
     @JsonCreator
     public static TicketType fromText(String text) {
-        if (text.equals(ADULT.getName())) {
+        if (text.toUpperCase().equals(ADULT.getName())) {
             return ADULT;
         }
 
-        if (text.equals(STUDENT.getName())) {
+        if (text.toUpperCase().equals(STUDENT.getName())) {
             return STUDENT;
         }
 
