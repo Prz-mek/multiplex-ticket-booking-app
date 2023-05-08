@@ -6,10 +6,8 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import tech.multiplex.booking.dto.ScreeningDTO;
 import tech.multiplex.booking.dto.ScreeningDetailsDTO;
@@ -33,8 +31,8 @@ public class ScreeningController {
                             schema = @Schema(implementation = ScreeningDTO.class))})
     })
     @GetMapping
-    public List<ScreeningDTO> getScreenings(@Valid @RequestParam(value = "from") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime from,
-                                            @Valid @RequestParam(value = "to") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime to) {
+    public List<ScreeningDTO> getScreenings(@RequestParam(value = "from") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime from,
+                                            @RequestParam(value = "to") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime to) {
         return screeningService.getScreeningsByDate(from, to);
     }
 

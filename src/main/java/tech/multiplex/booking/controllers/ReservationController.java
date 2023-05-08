@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tech.multiplex.booking.dto.ReservationRequestDTO;
@@ -27,7 +28,7 @@ public class ReservationController {
 
     @Operation(summary = "Make reservation")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Reservation made",
+            @ApiResponse(responseCode = "201", description = "Reservation made",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = Long.class))}),
             @ApiResponse(responseCode = "409", description = "Conflict with other reservation",
@@ -41,9 +42,10 @@ public class ReservationController {
                             schema = @Schema(implementation = ApiExceptionResponse.class))})
     })
     @PostMapping
-    public ResponseEntity<Long> makeReservation(@Valid @RequestBody ReservationRequestDTO reservationRequest) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public Long makeReservation(@Valid @RequestBody ReservationRequestDTO reservationRequest) {
         final Long bookingId = reservationService.makeReservation(reservationRequest);
-        return ResponseEntity.ok().body(bookingId);
+        return bookingId;
     }
 
     @Operation(summary = "Get reservation by id")
