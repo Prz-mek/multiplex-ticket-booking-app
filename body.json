@@ -1,0 +1,15 @@
+{
+  "screeningId": 6,
+  "firstName": "Ala",
+  "lastName": "Maa-Kota",
+  "tickets": [
+    {
+      "seatId": 18,
+      "type": "ADULT"
+    },
+    {
+      "seatId": 17,
+      "type": "STUDENT"
+    }
+  ]
+}
